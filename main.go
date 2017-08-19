@@ -147,12 +147,12 @@ func (self *Proxy) RoundTrip(req *http.Request) (*http.Response, error) {
 			if allow {
 				log.Debugf("Request: %s %s allowed", req.Method, req.URL)
 				
-				if req.Method == "POST" {
+				/*if req.Method == "POST" {
 					argh, _ := httputil.DumpRequestOut(req, true)
 					fmt.Println("########################################")
 					fmt.Println(string(argh))
 					fmt.Println("########################################")
-				}
+				}*/
 				return resp, nil
 			}
 		}
