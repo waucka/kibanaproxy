@@ -323,8 +323,18 @@ func addAuth(req *http.Request) {
 	req.URL = newUrl
 }
 
-func searchOverrides(username string, index string) bool {
+func getOverrides(username string) ([]string, bool) {
 	ovrList, ok := config.Overrides[username]
+
+	if !ok {
+		ovrList, ok = config.Overrides["*"]
+	}
+
+	return ovrList, ok
+}
+
+func searchOverrides(username string, index string) bool {
+	ovrList, ok := getOverrides(username)
 	if !ok {
 		return false
 	}
